@@ -2,6 +2,7 @@
 Description=DWM Statusbar Update
 
 [Service]
+Environment=DISPLAY=:0
 ExecStart=/usr/bin/bash %h/bin/update_dwm_title.sh
 
 [Install]
