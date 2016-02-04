@@ -1,0 +1,8 @@
+[Unit]
+Description=DWM Statusbar Update
+
+[Service]
+ExecStart=/usr/bin/bash %h/bin/update_dwm_title.sh
+
+[Install]
+WantedBy=default.target
