@@ -13,9 +13,10 @@ FILE_MISSING = "\033[33m[?]\033[0m"
 FILE_MODIFIED = "\033[36m[M]\033[0m"
 
 print("Staus of your home:\n",
-      "[?] file missing\n",
       "[F] file found\n",
-      "[M] file is modified\n")
+      "[M] file is modified\n"
+      "[?] file missing\n",
+     )
 
 for root, dirs, files in os.walk(".", topdown=True):
     for file in files:
