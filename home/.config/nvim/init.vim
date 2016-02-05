@@ -25,17 +25,13 @@ set shiftwidth=4
 
 set dir=~/tmp/nvim
 
-let g:webdevicons_conceal_nerdtree_brackets=1
-let g:WebDevIconsUnicodeGlyphDoubleWidth=0
-let g:WebDevIconsNerdTreeAfterGlyphPadding=''
 let g:airline_powerline_fonts=1
-let g:solarized_termcolors=16
-let g:ycm_confirm_extra_conf = 0
+let g:airline_theme='solarized'
 
 execute pathogen#infect()
 
 set background=dark " dark | light "
-colorscheme solarized
+colorscheme flattened_dark
 syntax enable
 
 "NERDTree

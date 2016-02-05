@@ -7,7 +7,7 @@ git clone \
 https://github.com/bling/vim-airline
 
 git clone \
-https://github.com/altercation/vim-colors-solarized
+https://github.com/mseeber/flattened
 
 git clone \
 https://github.com/tpope/vim-fugitive
