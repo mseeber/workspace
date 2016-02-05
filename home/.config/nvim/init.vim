@@ -9,7 +9,7 @@ set number
 set laststatus=2
 
 "want to paste from and copy to X clipboard
-"set clipboard=unnamedplus
+set clipboard=unnamedplus
 
 " shorter timeout
 set timeoutlen=50
