@@ -2,9 +2,8 @@
 # ~/.bashrc
 #
 
-set -x
 # If not running interactively, don't do anything
-#[[ $- != *i* ]] && return
+[[ $- != *i* ]] && return
 
 # parse subdirs
 if [ -d "${HOME}/.config/bashrc.d" ]; then
