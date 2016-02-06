@@ -1,0 +1,6 @@
+#
+# define aliases here
+#
+
+alias ls='ls --color=auto'
+

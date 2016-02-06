@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+# append home bin to path
+if [ -d "${HOME}/bin" ]; then
+	#append, so that bins in previous path are preferred
+    PATH="${PATH}:${HOME}/bin"
+fi

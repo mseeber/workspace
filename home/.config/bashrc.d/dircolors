@@ -1,0 +1,7 @@
+#!bash
+
+DIRCOLORSDB="${HOME}/.config/dircolors"
+
+if [ -f "${DIRCOLORSDB}" ]; then
+    eval `dircolors ${DIRCOLORSDB}`
+fi

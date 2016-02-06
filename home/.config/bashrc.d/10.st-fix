@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+# fix st + bash backspace behavior
+# see the st FAQ for details
+
+tput smkx
