@@ -24,7 +24,13 @@ def print_file_state(state, file_name):
     print("{0} {1}".format(state, file_name))
 
 def file_state(expected_file, repo_file):
-    pass
+    if os.path.exists(expected_file):
+        if filecmp.cmp(expected_file, repo_file):
+            print_file_state(FILE_FOUND, expected_file)
+        else:
+            print_file_state(FILE_MODIFIED, expected_file)
+    else:
+        print_file_state(FILE_MISSING, expected_file)
 
 target_home = os.path.expanduser('~')
 reference_home= './home'
@@ -37,11 +43,6 @@ for path, dirs, files in os.walk(reference_home, topdown=True):
         expected_file = os.path.join(target_home, target_path, file)
         expected_file = os.path.abspath(expected_file)
         repo_file = os.path.join(path, file)
+        file_state(expected_file, repo_file)
 
-        if os.path.exists(expected_file):
-            if filecmp.cmp(expected_file, repo_file):
-                print_file_state(FILE_FOUND, expected_file)
-            else:
-                print_file_state(FILE_MODIFIED, expected_file)
-        else:
-            print_file_state(FILE_MISSING, expected_file)
+
