@@ -20,7 +20,7 @@ print("Staus of your home:\n",
       "[?] file missing\n",
      )
 
-def print_file_state(state, file_name):
+def print_file_state(file_name, state):
     print("{0} {1}".format(state, file_name))
 
 def file_state(expected_file, repo_file):
@@ -46,6 +46,6 @@ for path, dirs, files in os.walk(reference_home, topdown=True):
         expected_file = os.path.abspath(expected_file)
         repo_file = os.path.join(path, file)
         state = file_state(expected_file, repo_file)
-        print_file_state(state, expected_file)
+        print_file_state(expected_file, state)
 
 
