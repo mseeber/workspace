@@ -19,10 +19,16 @@ def print_file_state(target_file, reference_file):
     reference_file.
     """
     if os.path.exists(target_file):
-        if filecmp.cmp(target_file, reference_file):
-            state = FILE_FOUND
-        else:
+        state = FILE_FOUND
+
+        if not filecmp.cmp(target_file, reference_file):
             state = FILE_MODIFIED
+
+        # symlinks that point to the reference file are evaluated as
+        # equal to the reference file, but being a symlink should be
+        # reported
+        if os.path.islink(target_file):
+            state = FILE_SYMLINK
     else:
         state = FILE_MISSING
 
