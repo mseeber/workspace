@@ -13,19 +13,12 @@ FILE_MISSING = "\033[33m[?]\033[0m"    # yellow
 FILE_MODIFIED = "\033[36m[M]\033[0m"   # cyan
 FILE_SYMLINK = "\033[35m[S]\033[0m"    # cyan
 
-print("Staus of your home:\n",
-      "[F] file found\n",
-      "[M] file is modified\n",
-      "[S] file is symlink\n",
-      "[?] file missing\n",
-     )
-
 def print_file_state(file_name, state):
     print("{0} {1}".format(state, file_name))
 
-def file_state(expected_file, repo_file):
-    if os.path.exists(expected_file):
-        if filecmp.cmp(expected_file, repo_file):
+def get_file_state(target_file, repo_file):
+    if os.path.exists(target_file):
+        if filecmp.cmp(target_file, repo_file):
             state = FILE_FOUND
         else:
             state = FILE_MODIFIED
@@ -34,18 +27,25 @@ def file_state(expected_file, repo_file):
 
     return state
 
-target_home = os.path.expanduser('~')
-reference_home= './home'
+print("Staus of your home:\n",
+      "[F] file found\n",
+      "[M] file is modified\n",
+      "[S] file is symlink\n",
+      "[?] file missing\n",
+     )
 
-for path, dirs, files in os.walk(reference_home, topdown=True):
+
+TARGET_HOME = os.path.expanduser('~')
+REFERENCE_HOME = './home'
+
+for path, dirs, files in os.walk(REFERENCE_HOME, topdown=True):
     # slice away the reference home location
-    target_path = path[len(reference_home)+1:]
+    target_path = path[len(REFERENCE_HOME)+1:]
 
     for file in files:
-        expected_file = os.path.join(target_home, target_path, file)
+        expected_file = os.path.join(TARGET_HOME, target_path, file)
         expected_file = os.path.abspath(expected_file)
         repo_file = os.path.join(path, file)
-        state = file_state(expected_file, repo_file)
-        print_file_state(expected_file, state)
-
+        file_state = get_file_state(expected_file, repo_file)
+        print_file_state(expected_file, file_state)
 
