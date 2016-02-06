@@ -26,11 +26,14 @@ def print_file_state(state, file_name):
 def file_state(expected_file, repo_file):
     if os.path.exists(expected_file):
         if filecmp.cmp(expected_file, repo_file):
-            print_file_state(FILE_FOUND, expected_file)
+            state = FILE_FOUND
         else:
-            print_file_state(FILE_MODIFIED, expected_file)
+            state = FILE_MODIFIED
     else:
-        print_file_state(FILE_MISSING, expected_file)
+        state = FILE_MISSING
+
+    print_file_state(state, expected_file)
+    return state
 
 target_home = os.path.expanduser('~')
 reference_home= './home'
