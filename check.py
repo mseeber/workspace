@@ -32,7 +32,6 @@ def file_state(expected_file, repo_file):
     else:
         state = FILE_MISSING
 
-    print_file_state(state, expected_file)
     return state
 
 target_home = os.path.expanduser('~')
@@ -46,6 +45,7 @@ for path, dirs, files in os.walk(reference_home, topdown=True):
         expected_file = os.path.join(target_home, target_path, file)
         expected_file = os.path.abspath(expected_file)
         repo_file = os.path.join(path, file)
-        file_state(expected_file, repo_file)
+        state = file_state(expected_file, repo_file)
+        print_file_state(state, expected_file)
 
 
