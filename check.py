@@ -23,6 +23,9 @@ print("Staus of your home:\n",
 def print_file_state(state, file_name):
     print("{0} {1}".format(state, file_name))
 
+def file_state(expected_file, repo_file):
+    pass
+
 target_home = os.path.expanduser('~')
 reference_home= './home'
 
@@ -33,9 +36,9 @@ for path, dirs, files in os.walk(reference_home, topdown=True):
     for file in files:
         expected_file = os.path.join(target_home, target_path, file)
         expected_file = os.path.abspath(expected_file)
+        repo_file = os.path.join(path, file)
 
         if os.path.exists(expected_file):
-            repo_file = os.path.join(path, file)
             if filecmp.cmp(expected_file, repo_file):
                 print_file_state(FILE_FOUND, expected_file)
             else:
