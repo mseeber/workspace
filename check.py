@@ -1,17 +1,28 @@
 #!/usr/bin/python3
 
 """
-Check how your home directory differs from the configuration in this
-repository.
+Check if the files $HOME differ from this repo.
+
+Possible states of files in $HOME:
+
+  [F] file found and matches file in repo
+  [M] file found but differs from file in repo (modified)
+  [S] file is a symlink (this requires attention)
+  [?] file missing from $HOME
 """
 
 import os
 import filecmp
+import argparse
+from argparse import RawTextHelpFormatter
 
 FILE_FOUND = "\033[34m[F]\033[0m"      # blue
 FILE_MISSING = "\033[33m[?]\033[0m"    # yellow
 FILE_MODIFIED = "\033[36m[M]\033[0m"   # cyan
 FILE_SYMLINK = "\033[35m[S]\033[0m"    # cyan
+
+parser = argparse.ArgumentParser(description=__doc__,formatter_class=RawTextHelpFormatter)
+args = parser.parse_args()
 
 def print_file_state(target_file, reference_file):
     """
@@ -33,13 +44,6 @@ def print_file_state(target_file, reference_file):
         state = FILE_MISSING
 
     print("{0} {1}".format(state, reference_file))
-
-print("Staus of your home:\n",
-      "[F] file found\n",
-      "[M] file is modified\n",
-      "[S] file is symlink\n",
-      "[?] file missing\n",
-     )
 
 
 TARGET_HOME = os.path.expanduser('~')
