@@ -17,10 +17,10 @@ import argparse
 from argparse import RawTextHelpFormatter
 
 # TODO adapt variable names and logic
-FILE_FOUND = "\033[34m[M]\033[0m"      # blue
+FILE_MATCH = "\033[34m[M]\033[0m"      # blue
 FILE_MISSING = "\033[33m[?]\033[0m"    # yellow
-FILE_MODIFIED = "\033[36m[D]\033[0m"   # cyan
-FILE_SYMLINK = "\033[35m[S]\033[0m"    # cyan
+FILE_DIFFERS = "\033[36m[D]\033[0m"    # cyan
+FILE_SYMLINK = "\033[35m[S]\033[0m"    # magenta
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=RawTextHelpFormatter)
 args = parser.parse_args()
@@ -31,10 +31,10 @@ def print_file_state(target_file, reference_file):
     reference_file.
     """
     if os.path.exists(target_file):
-        state = FILE_FOUND
+        state = FILE_MATCH
 
         if not filecmp.cmp(target_file, reference_file):
-            state = FILE_MODIFIED
+            state = FILE_DIFFERS
 
         # symlinks that point to the reference file are evaluated as
         # equal to the reference file, but being a symlink should be
