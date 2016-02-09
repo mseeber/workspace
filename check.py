@@ -50,9 +50,9 @@ def print_file_state(target_file, reference_file):
 def main():
 
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=RawTextHelpFormatter)
-    args = parser.parse_args()
+    parser.parse_args()
 
-    for path, dirs, files in os.walk(REFERENCE_HOME, topdown=True):
+    for path, _, files in os.walk(REFERENCE_HOME, topdown=True):
         # slice away the reference home location
         target_path = path[len(REFERENCE_HOME)+1:]
 
