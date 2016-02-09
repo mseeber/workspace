@@ -8,7 +8,7 @@ Possible states of files in $HOME:
   [M] file found and matches file in repo
   [D] file found but differs from file in repo
   [S] file is a symlink (this requires attention)
-  [?] file missing from $HOME
+  [?] file missing in $HOME
 """
 
 import os
@@ -16,14 +16,13 @@ import filecmp
 import argparse
 from argparse import RawTextHelpFormatter
 
-# TODO adapt variable names and logic
 FILE_MATCH = "\033[34m[M]\033[0m"      # blue
 FILE_MISSING = "\033[33m[?]\033[0m"    # yellow
 FILE_DIFFERS = "\033[36m[D]\033[0m"    # cyan
 FILE_SYMLINK = "\033[35m[S]\033[0m"    # magenta
 
-parser = argparse.ArgumentParser(description=__doc__, formatter_class=RawTextHelpFormatter)
-args = parser.parse_args()
+TARGET_HOME = os.path.expanduser('~')
+REFERENCE_HOME = './home'
 
 def print_file_state(target_file, reference_file):
     """
@@ -47,16 +46,21 @@ def print_file_state(target_file, reference_file):
     print("{0} {1}".format(state, reference_file))
 
 
-TARGET_HOME = os.path.expanduser('~')
-REFERENCE_HOME = './home'
 
-for path, dirs, files in os.walk(REFERENCE_HOME, topdown=True):
-    # slice away the reference home location
-    target_path = path[len(REFERENCE_HOME)+1:]
+def main():
 
-    for file in files:
-        expected_file = os.path.join(TARGET_HOME, target_path, file)
-        expected_file = os.path.abspath(expected_file)
-        repo_file = os.path.join(path, file)
-        print_file_state(expected_file, repo_file)
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=RawTextHelpFormatter)
+    args = parser.parse_args()
 
+    for path, dirs, files in os.walk(REFERENCE_HOME, topdown=True):
+        # slice away the reference home location
+        target_path = path[len(REFERENCE_HOME)+1:]
+
+        for file in files:
+            expected_file = os.path.join(TARGET_HOME, target_path, file)
+            expected_file = os.path.abspath(expected_file)
+            repo_file = os.path.join(path, file)
+            print_file_state(expected_file, repo_file)
+
+if __name__ == '__main__':
+    main()
