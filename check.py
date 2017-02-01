@@ -46,7 +46,6 @@ def print_file_state(target_file, reference_file):
     print("{0} {1}".format(state, reference_file))
 
 
-
 def main():
 
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=RawTextHelpFormatter)
