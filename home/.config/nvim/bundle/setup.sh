@@ -17,3 +17,6 @@ https://github.com/airblade/vim-gitgutter
 
 git clone \
 https://github.com/wikimatze/vim-webdevicons.git
+
+git clone \
+https://github.com/rhysd/vim-clang-format.git
