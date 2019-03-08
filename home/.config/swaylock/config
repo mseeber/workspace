@@ -1,0 +1,8 @@
+# Swaylock configuration
+#
+# Read `man 1 swaylock` for a complete reference.
+
+### Style
+#
+# Background image
+image=~/.wallpapers/jeff_morgan__stub_stewart_iridium_flare__4k.jpg
