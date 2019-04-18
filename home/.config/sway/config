@@ -70,7 +70,7 @@ exec swayidle -w \
 # Basics:
 #
     # start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec $term -e tmux
 
     # kill focused window
     bindsym $mod+Shift+q kill
