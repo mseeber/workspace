@@ -26,7 +26,9 @@ set $wallpaper ~/.wallpapers/jeff_morgan__stub_stewart_iridium_flare__4k.jpg
 # Font for bar
 font Monospace 17
 # Window borders
-default_border pixel
+default_border pixel 2
+# remove window borders if only one window is present on workspace
+hide_edge_borders smart
 
 ### Output configuration
 #
@@ -70,10 +72,10 @@ exec swayidle -w \
 # Basics:
 #
     # start a terminal
-    bindsym $mod+Return exec $term -e tmux
+    bindsym $mod+Shift+Return exec $term -e tmux
 
     # kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+Shift+c kill
 
     # start your launcher
     bindsym $mod+p exec $menu
@@ -86,7 +88,7 @@ exec swayidle -w \
     floating_modifier $mod normal
 
     # reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+r reload
 
     # exit sway (logs you out of your wayland session)
     bindsym $mod+Shift+e exit
@@ -214,7 +216,7 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
-    status_command while date +'%Y-%m-%d %H:%M:%S'; do sleep 1; done
+    status_command ~/scripts/swaystatus.sh
     colors {
         statusline #ffffff
         background #323232
