@@ -1,0 +1,8 @@
+# fix JAVA problems in sway/dwm
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# if running from tty1 start sway
+if [ "$(tty)" = "/dev/tty1" ]; then
+	export XKB_DEFAULT_LAYOUT=de
+	exec sway > ~/.config/sway/sway.log
+fi
