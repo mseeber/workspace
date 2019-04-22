@@ -1,0 +1,5 @@
+#!/bin/bash
+
+SWAYIDLE_PID=$(ps -C swayidle -o pid=)
+
+kill -s SIGSTOP -- ${SWAYIDLE_PID}
