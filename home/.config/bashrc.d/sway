@@ -1,5 +1,14 @@
 # fix JAVA problems in sway/dwm
 export _JAVA_AWT_WM_NONREPARENTING=1
+export QT_FONT_DPI=147
+export QT_QPA_PLATFORM=wayland-egl
+export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+#export GDK_BACKEND=wayland
+export GTK_THEME=Numix
+export QT_WAYLAND_FORCE_DPI=physical
+export SDL_VIDEODRIVER=wayland
+export CLUTTER_BACKEND=wayland
+
 
 # if running from tty1 start sway
 if [ "$(tty)" = "/dev/tty1" ]; then
